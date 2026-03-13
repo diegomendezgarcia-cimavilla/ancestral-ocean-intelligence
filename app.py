@@ -59,3 +59,28 @@ if rows:
 
 st.subheader("comunidad")
 st.write(community_message())
+from reflection_engine import generate_reflection
+from community_analysis import community_insights
+
+if rows:
+    df = create_dataframe(rows)
+
+    st.subheader("Reflexión personal del día")
+    today_record = {
+        "energy": energy,
+        "mood": mood,
+        "stress": stress,
+        "sleep": sleep,
+        "nature": nature,
+        "surf": surf,
+        "fishing": fishing,
+        "cannabis": cannabis,
+        "food": food
+    }
+
+    reflection_text = generate_reflection(today_record, df)
+    st.write(reflection_text)
+
+    st.subheader("Insights de la comunidad")
+    community_text = community_insights(df)  # por ahora tus propios registros, luego puede ser global
+    st.write(community_text)
